@@ -29,4 +29,11 @@ class GlassRails
 
     user
   end
+
+  def self.get_client user_id
+    client = Google::APIClient.new
+    client.authorization.scope = 'https://www.googleapis.com/auth/calendar'
+    client.authorization.access_token = User.get_current_token(user_id)
+    client
+  end
 end
